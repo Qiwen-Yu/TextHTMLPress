@@ -40,6 +40,9 @@ python __main__.py --help
 python __main__.py -i ./tests/Silver\ Blaze.txt
 # generate .html files from a folder 
 python __main__.py -i ./tests/
+# use multiple options
+python __main__.py -i ./tests/Silver\ Blaze.txt -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css
+
 ```
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
