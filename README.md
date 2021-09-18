@@ -30,7 +30,11 @@ Check the `requirements.txt`.
 pip install -r requirements.txt
 # redirect into the package folder
 cd ~/yourpath/TextHTMLPress
+
 # check help
+# it might be python3 __main__.py --help on your machine
+# python3 instead of python
+
 python __main__.py --help
 # generate .html from a .txt file
 python __main__.py -i ./tests/Silver\ Blaze.txt
