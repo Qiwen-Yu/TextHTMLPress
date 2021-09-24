@@ -63,8 +63,13 @@ class Generator:
             with tag('body'):
                 # a list of paragraphs
                 ps = get_paragraphs(filepath)
-                for p in ps:
-                    line('p', p)
+                if title:
+                    line('h1', title)
+                    for p in ps[1:]:
+                        line('p', p)
+                else:
+                    for p in ps:
+                        line('p', p)
 
         return doc.getvalue()
 
