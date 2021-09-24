@@ -44,6 +44,10 @@ python __main__.py -i ./tests/
 python __main__.py -i ./tests/Silver\ Blaze.txt -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css
 
 ```
+## Example Output
+
+Please find [here](https://github.com/Qiwen-Yu/TextHTMLPress/tree/main/Example_Output).
+
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
