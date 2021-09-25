@@ -34,10 +34,15 @@ class Generator:
 
         # different conditions file vs folder
         if self._in_path.is_file():
+            # TODO: decide .txt or .md
+            #
             self.generate_a_file(self._in_path)
         # find all .txt in
         if self._in_path.is_dir():
+            # TODO: only for txt path, should be able to find path of txt, md or sub-folder
             for txt_path in self._in_path.glob(self.DEFAULT_FILE):
+                # TODO: recursively, call the function it self
+                # TODO: call itself generator_wrapper()
                 self.generate_a_file(txt_path)
 
     def generate_a_html(self, filepath: Path) -> str:
@@ -117,6 +122,7 @@ def get_title(filepath: Path) -> str:
     except OSError as e:
         click.echo(f"Can not open {filepath}")
 
+
 def get_paragraphs(filepath: Path) -> List[str]:
     try:
         with filepath.open('r', encoding='utf-8') as f:
@@ -125,7 +131,3 @@ def get_paragraphs(filepath: Path) -> List[str]:
             return paragraphs
     except OSError as e:
         click.echo(f"Can not open {filepath}")
-
-
-
-

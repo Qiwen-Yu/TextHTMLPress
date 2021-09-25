@@ -30,6 +30,7 @@ def main(inp: Path, output: Path, stylesheet: str) -> None:
     if inp.exists():
         # create an instance of the Generator
         g = Generator(inp, output, stylesheet)
+        # TODO: or make generator_wrapper() a function, not a method
         g.generator_wrapper()
     else:
         # f string, format string python3
