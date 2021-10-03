@@ -6,6 +6,8 @@ from pathlib import Path
 from generator import Generator
 
 DEFAULT_FILE = '.txt'
+# fix issue 6
+DEFAULT_LANG = 'en-CA'
 # current working directory, a path object
 cwd = Path.cwd()
 # ADD a relative path
@@ -26,10 +28,12 @@ DEFAULT_OUTPUT = cwd / 'dist'
                                                                                         path_type=Path),
               help='Path to an folder contains all output files')
 @click.option('-s', '--stylesheet', required=False, default='', help='URL of a CSS stylesheet')
-def main(inp: Path, output: Path, stylesheet: str) -> None:
+# fix issue 6
+@click.option('-l', '--lang', required=False, default=DEFAULT_LANG, help='Indicates the lang attribute on root html')
+def main(inp: Path, output: Path, stylesheet: str, lang: str) -> None:
     if inp.exists():
         # create an instance of the Generator
-        g = Generator(inp, output, stylesheet)
+        g = Generator(inp, output, stylesheet, lang)
         # TODO: or make generator_wrapper() a function, not a method
         g.generator_wrapper()
     else:

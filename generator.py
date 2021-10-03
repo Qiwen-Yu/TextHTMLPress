@@ -11,12 +11,13 @@ class Generator:
     _in_path: Path
     _out_path: Path
     _stylesheet_url: str
+    _lang: str
     # static variables
     DEFAULT_FILE = '*.txt'
     # a relative path
     DEFAULT_OUTPUT = Path.cwd() / 'dist/'
 
-    def __init__(self, in_path: Path, out_path: Optional[Path], stylesheet_url: Optional[str]):
+    def __init__(self, in_path: Path, out_path: Optional[Path], stylesheet_url: Optional[str], lang: Optional[str]):
         self._in_path = in_path
         if not out_path:
             self._out_path = self.DEFAULT_OUTPUT
@@ -24,6 +25,7 @@ class Generator:
         if not stylesheet_url:
             self._stylesheet_url = ''
         self._stylesheet_url = stylesheet_url
+        self._lang = lang
 
     def generator_wrapper(self) -> None:
         # remove old output folder and its contents
@@ -53,7 +55,8 @@ class Generator:
         doc.asis('<!DOCTYPE html>')
 
         with tag('html'):
-            doc.attr(lang='en')
+            # fix issue 6
+            doc.attr(lang=self._lang)
             with tag('head'):
                 doc.stag('meta', charset='utf-8')
                 doc.stag('meta', name='viewport',

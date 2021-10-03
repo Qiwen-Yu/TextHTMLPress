@@ -43,6 +43,9 @@ python __main__.py -i ./tests/
 # use multiple options
 python __main__.py -i ./tests/Silver\ Blaze.txt -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css
 
+# specify the lang attribute in root element of HTML, default en-CA
+python __main__.py -i ./tests/ -l fr
+
 ```
 ## Example Output
 
