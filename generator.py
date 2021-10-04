@@ -1,4 +1,5 @@
 import shutil
+import sys
 from pathlib import Path
 from typing import Optional
 from yattag import Doc
@@ -90,6 +91,7 @@ class Generator:
                     click.echo(f"{filepath} was exported as .html file to {self._out_path} successfully")
         except OSError as e:
             click.echo(f"Can not write file to {self._out_path}")
+            sys.exit(1)
 
     def generate_a_file(self, filepath: Path) -> None:
         """
@@ -121,6 +123,8 @@ def get_title(filepath: Path) -> str:
         return ''
     except OSError as e:
         click.echo(f"Can not open {filepath}")
+        # fix issue 7
+        sys.exit(1)
 
 
 def get_paragraphs(filepath: Path) -> List[str]:
@@ -131,3 +135,5 @@ def get_paragraphs(filepath: Path) -> List[str]:
             return paragraphs
     except OSError as e:
         click.echo(f"Can not open {filepath}")
+        # fix issue 7
+        sys.exit(1)
