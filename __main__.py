@@ -4,6 +4,8 @@ python -m entry point to run via python -m
 import click
 from pathlib import Path
 from generator import Generator
+# fix issue 7
+import sys
 
 DEFAULT_FILE = '.txt'
 # fix issue 6
@@ -39,6 +41,8 @@ def main(inp: Path, output: Path, stylesheet: str, lang: str) -> None:
     else:
         # f string, format string python3
         click.echo(f"The input file/folder {inp} does not exist.")
+        # fix issue 7
+        sys.exit(1)
 
 
 if __name__ == '__main__':
