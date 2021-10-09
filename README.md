@@ -12,6 +12,7 @@ HTML website from raw data and files.
 - [x] title of .html file
 - [x] customized output destination
 - [x] CSS stylesheet
+- [x] customized option from config file 
 
 ## Dependencies
 This tool is written by `Python 3.9`, with `pip 21.1.2`.
@@ -42,7 +43,8 @@ python __main__.py -i ./tests/Silver\ Blaze.txt
 python __main__.py -i ./tests/
 # use multiple options
 python __main__.py -i ./tests/Silver\ Blaze.txt -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css
-
+# use config file
+python __main__.py -c ./tests
 # specify the lang attribute in root element of HTML, default en-CA
 python __main__.py -i ./tests/ -l fr
 
