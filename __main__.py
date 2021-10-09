@@ -34,7 +34,7 @@ DEFAULT_OUTPUT = cwd / 'dist'
 @click.option('-s', '--stylesheet', required=False, default='', help='URL of a CSS stylesheet')
 # fix issue 6
 @click.option('-l', '--lang', required=False, default=DEFAULT_LANG, help='Indicates the lang attribute on root html')
-@click.option('-c', '--config', 'config_' , required= False,  type=click.Path(exists=False, file_okay=True, dir_okay=True,
+@click.option('-c', '--config', 'config_' , required= False,  type=click.Path(exists=True, file_okay=True, dir_okay=True,
                                                                      readable=True, resolve_path=True,
                                                                      path_type=Path),
               help='Path to a config file/folder')
