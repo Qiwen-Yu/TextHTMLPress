@@ -44,7 +44,9 @@ python __main__.py -i ./tests/
 # use multiple options
 python __main__.py -i ./tests/Silver\ Blaze.txt -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css
 # use config file
-python __main__.py -c ./tests
+# or python __main__.py -c config.yml
+# 
+python __main__.py --config config.yml
 # specify the lang attribute in root element of HTML, default en-CA
 python __main__.py -i ./tests/ -l fr
 
