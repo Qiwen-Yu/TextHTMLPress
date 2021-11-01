@@ -1,6 +1,6 @@
 # TextHTMLPress
 A command-line static site generator to generate a complete 
-HTML website from raw data and files.
+HTML website from raw data and files (txt files or MarkDown files).
 
 ## Features
 
