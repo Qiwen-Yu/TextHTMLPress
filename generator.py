@@ -13,22 +13,29 @@ import jinja2
 class Generator:
     """Basic Generator to produce static html files from txt and Markdown files, taking input either a .txt file or a
     folder"""
+
     _in_path: Path
     _out_path: Path
     _stylesheet_url: str
     _lang: str
     # static variables
-    DEFAULT_FILES = ('*.txt', '*.md')
+    DEFAULT_FILES = ("*.txt", "*.md")
     # a relative path
-    DEFAULT_OUTPUT = Path.cwd() / 'dist/'
+    DEFAULT_OUTPUT = Path.cwd() / "dist/"
 
-    def __init__(self, in_path: Path, out_path: Optional[Path], stylesheet_url: Optional[str], lang: Optional[str]):
+    def __init__(
+        self,
+        in_path: Path,
+        out_path: Optional[Path],
+        stylesheet_url: Optional[str],
+        lang: Optional[str],
+    ):
         self._in_path = in_path
         if not out_path:
             self._out_path = self.DEFAULT_OUTPUT
         self._out_path = out_path
         if not stylesheet_url:
-            self._stylesheet_url = ''
+            self._stylesheet_url = ""
         self._stylesheet_url = stylesheet_url
         self._lang = lang
 
@@ -44,9 +51,9 @@ class Generator:
             # TODO: decide .txt or .md
             # get file extension
             file_ext = self._in_path.suffix
-            if file_ext == '.txt':
+            if file_ext == ".txt":
                 self.generate_a_file(self._in_path)
-            if file_ext == '.md':
+            if file_ext == ".md":
                 self.parse_markdown(self._in_path)
         # find all .txt in
         if self._in_path.is_dir():
@@ -65,8 +72,8 @@ class Generator:
         title = get_title(filepath)
         # open the MarkDown file
         post = frontmatter.load(filepath)
-        date = post['date']
-        author = post['author']
+        date = post["date"]
+        author = post["author"]
         content = post.content
 
         # html body
@@ -74,42 +81,47 @@ class Generator:
 
         # write html, generate a template string
         doc, tag, text, line = Doc().ttl()
-        doc.asis('<!DOCTYPE html>')
+        doc.asis("<!DOCTYPE html>")
 
-        with tag('html'):
+        with tag("html"):
             # fix issue 6
             doc.attr(lang=self._lang)
-            with tag('head'):
-                doc.stag('meta', charset='utf-8')
-                doc.stag('meta', name='viewport',
-                         content='width=device-width, initial-scale=1')
-                with tag('title'):
+            with tag("head"):
+                doc.stag("meta", charset="utf-8")
+                doc.stag(
+                    "meta",
+                    name="viewport",
+                    content="width=device-width, initial-scale=1",
+                )
+                with tag("title"):
                     if title:
                         text(title)
                     else:
                         text(filename)
                 if self._stylesheet_url:
-                    doc.stag('link', rel='stylesheet', href=self._stylesheet_url)
+                    doc.stag("link", rel="stylesheet", href=self._stylesheet_url)
 
-            with tag('body'):
+            with tag("body"):
                 if not title:
-                    line('h1', title)
-                line('h2', '{{author}}')
-                line('h2', '{{date}}')
-                line('p', 'temp')
+                    line("h1", title)
+                line("h2", "{{author}}")
+                line("h2", "{{date}}")
+                line("p", "temp")
         # temp_html has meta and body as a string
         temp_html = doc.getvalue()
         # insert content to body
-        html = temp_html.replace('<p>temp</p>', html_body)
+        html = temp_html.replace("<p>temp</p>", html_body)
         final_html = jinja2.Template(html).render(author=author, date=date)
 
         try:
             if self._out_path.is_dir():
-                html_name = filename + '.html'
+                html_name = filename + ".html"
                 final_path = self._out_path / html_name
                 with final_path.open("w+", encoding="utf-8") as w_f:
                     w_f.write(final_html)
-                    click.echo(f"{filepath} was exported as .html file to {self._out_path} successfully")
+                    click.echo(
+                        f"{filepath} was exported as .html file to {self._out_path} successfully"
+                    )
         except OSError as e:
             click.echo(f"Can not write file to {self._out_path}")
             sys.exit(1)
@@ -119,32 +131,35 @@ class Generator:
         doc, tag, text, line = Doc().ttl()
         title = get_title(filepath)
         filename = filepath.stem
-        doc.asis('<!DOCTYPE html>')
+        doc.asis("<!DOCTYPE html>")
 
-        with tag('html'):
+        with tag("html"):
             # fix issue 6
             doc.attr(lang=self._lang)
-            with tag('head'):
-                doc.stag('meta', charset='utf-8')
-                doc.stag('meta', name='viewport',
-                         content='width=device-width, initial-scale=1')
-                with tag('title'):
+            with tag("head"):
+                doc.stag("meta", charset="utf-8")
+                doc.stag(
+                    "meta",
+                    name="viewport",
+                    content="width=device-width, initial-scale=1",
+                )
+                with tag("title"):
                     if title:
                         text(title)
                     else:
                         text(filename)
                 if self._stylesheet_url:
-                    doc.stag('link', rel='stylesheet', href=self._stylesheet_url)
-            with tag('body'):
+                    doc.stag("link", rel="stylesheet", href=self._stylesheet_url)
+            with tag("body"):
                 # a list of paragraphs
                 ps = get_paragraphs(filepath)
                 if title:
-                    line('h1', title)
+                    line("h1", title)
                     for p in ps[1:]:
-                        line('p', p)
+                        line("p", p)
                 else:
                     for p in ps:
-                        line('p', p)
+                        line("p", p)
 
         return doc.getvalue()
 
@@ -153,11 +168,13 @@ class Generator:
         filename = filepath.stem
         try:
             if self._out_path.is_dir():
-                html_name = filename + '.html'
+                html_name = filename + ".html"
                 final_path = self._out_path / html_name
                 with final_path.open("w+", encoding="utf-8") as w_f:
                     w_f.write(raw_html)
-                    click.echo(f"{filepath} was exported as .html file to {self._out_path} successfully")
+                    click.echo(
+                        f"{filepath} was exported as .html file to {self._out_path} successfully"
+                    )
         except OSError as e:
             click.echo(f"Can not write file to {self._out_path}")
             sys.exit(1)
@@ -181,23 +198,23 @@ def get_title(filepath: Path) -> str:
     """
     try:
         file_ext = filepath.suffix
-        with filepath.open('r', encoding='utf-8') as f:
-            if file_ext == '.txt':
+        with filepath.open("r", encoding="utf-8") as f:
+            if file_ext == ".txt":
                 blank_lines = 2
                 n = 0
                 lines = f.read().splitlines()
-                for line in lines[:blank_lines + 1]:
+                for line in lines[: blank_lines + 1]:
                     if not line.strip():
                         n += 1
 
                 if n == blank_lines:
                     return lines[0]
 
-            if file_ext == '.md':
+            if file_ext == ".md":
                 post = frontmatter.load(f)
-                if not post['title']:
-                    return post['title']
-        return ''
+                if not post["title"]:
+                    return post["title"]
+        return ""
     except OSError as e:
         click.echo(f"Can not open {filepath}")
         # fix issue 7
@@ -207,8 +224,8 @@ def get_title(filepath: Path) -> str:
 def get_paragraphs(filepath: Path) -> List[str]:
     try:
         file_ext = filepath.suffix
-        with filepath.open('r', encoding='utf-8') as f:
-            if file_ext == '.txt':
+        with filepath.open("r", encoding="utf-8") as f:
+            if file_ext == ".txt":
                 # single blank line between paragraphs
                 paragraphs = f.read().split("\n\n")
                 return paragraphs
