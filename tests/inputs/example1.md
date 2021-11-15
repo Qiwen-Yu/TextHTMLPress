@@ -1,6 +1,7 @@
 ---
 title: Zen
-Author: Python
+author: Somebody
+date: 2021-10-15
 ---
 
 # Zen

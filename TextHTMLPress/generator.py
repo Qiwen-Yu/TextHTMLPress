@@ -72,8 +72,14 @@ class Generator:
         title = get_title(filepath)
         # open the MarkDown file
         post = frontmatter.load(filepath)
-        date = post["date"]
-        author = post["author"]
+        if "date" in post:
+            date = post["date"]
+        else:
+            date = ""
+        if "author" in post:
+            author = post["author"]
+        else:
+            author = ""
         content = post.content
 
         # html body
@@ -93,6 +99,7 @@ class Generator:
                     name="viewport",
                     content="width=device-width, initial-scale=1",
                 )
+                doc.stag("meta", name="author", content=author)
                 with tag("title"):
                     if title:
                         text(title)
@@ -104,8 +111,9 @@ class Generator:
             with tag("body"):
                 if not title:
                     line("h1", title)
-                line("h2", "{{author}}")
-                line("h2", "{{date}}")
+
+                line("h3", "{{author}}")
+                line("h3", "{{date}}")
                 line("p", "temp")
         # temp_html has meta and body as a string
         temp_html = doc.getvalue()
@@ -209,12 +217,14 @@ def get_title(filepath: Path) -> str:
 
                 if n == blank_lines:
                     return lines[0]
+                else:
+                    return ""
 
             if file_ext == ".md":
                 post = frontmatter.load(f)
-                if not post["title"]:
+                if "title" in post:
                     return post["title"]
-        return ""
+                return ""
     except OSError as e:
         click.echo(f"Can not open {filepath}")
         # fix issue 7

@@ -38,17 +38,17 @@ cd ~/yourpath/TextHTMLPress
 
 python __main__.py --help
 # generate .html from a .txt file
-python __main__.py -i ./tests/Silver\ Blaze.txt
+python __main__.py -i ./tests/inputs/Silver\ Blaze.txt
 # generate .html files from a folder 
-python __main__.py -i ./tests/
+python __main__.py -i ./tests/inputs/
 # use multiple options
-python __main__.py -i ./tests/Silver\ Blaze.txt -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css
+python __main__.py -i ./tests/inputs/Silver\ Blaze.txt -s https://cdn.jsdelivr.net/npm/water.css@2/out/water.css
 # use config file
 # or python __main__.py -c config.yml
 # 
 python __main__.py --config config.yml
 # specify the lang attribute in root element of HTML, default en-CA
-python __main__.py -i ./tests/ -l fr
+python __main__.py -i ./tests/inputs/ -l fr
 
 ```
 ## Example Output
