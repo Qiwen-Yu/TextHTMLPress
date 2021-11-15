@@ -18,3 +18,7 @@ Check the `requirements.txt`.
 ```shell
 black TextHTMLPress/
 ```
+
+### Test Framework
+
+The unit test cases can be found in the test.py file.
