@@ -1,6 +1,6 @@
 # import pytest
 # from click.testing import CliRunner
-from TextHTMLPress.generator import Generator, get_title
+from TextHTMLPress.generator import Generator, get_title, get_paragraphs
 from pathlib import Path
 
 
@@ -11,7 +11,13 @@ from pathlib import Path
 #     assert result.exit_code == 0
 
 
-def test_title():
+def test_get_paragraphs() -> None:
+    filepath = Path("./tests/inputs/test1.txt")
+    para = get_paragraphs(filepath)
+    assert para == ['Silver Blaze', '\nI am afraid, Watson, that I shall have to go']
+
+
+def test_title() -> None:
     filepath = Path("./tests/inputs/Silver_Blaze.txt")
     title = get_title(filepath)
     assert title == "Silver Blaze"
@@ -21,7 +27,7 @@ def test_title():
     assert title == "Zen"
 
 
-def test_md():
+def test_md() -> None:
     inp = Path("./tests/inputs/test1.txt")
     output = Path("../dist")
     stylesheet = ""
