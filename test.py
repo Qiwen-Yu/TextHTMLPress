@@ -12,19 +12,17 @@ from pathlib import Path
 
 
 def test_title():
-    filepath = Path("./inputs/Silver_Blaze.txt")
+    filepath = Path("./tests/inputs/Silver_Blaze.txt")
     title = get_title(filepath)
     assert title == "Silver Blaze"
 
-    filepath = Path("./inputs/example1.md")
+    filepath = Path("./tests/inputs/example1.md")
     title = get_title(filepath)
     assert title == "Zen"
 
 
 def test_md():
-    # works in pytest
-    # inp = Path("./tests/inputs/test1.txt")
-    inp = Path("./inputs/test1.txt")
+    inp = Path("./tests/inputs/test1.txt")
     output = Path("../dist")
     stylesheet = ""
     lang = "en-CA"

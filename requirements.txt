@@ -1,6 +1,7 @@
 setuptools~=57.0.0
 click~=8.0.1
 yattag~=1.14.0
+click-config-file~=0.6.0
 python-frontmatter~=1.0.0
 Markdown~=3.3.4
 Jinja2~=3.0.2
