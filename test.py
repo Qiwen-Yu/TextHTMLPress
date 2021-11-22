@@ -39,8 +39,8 @@ I am afraid, Watson, that I shall have to go</p></body></html>"""
 
 def test_generate_a_HtmlFile_from_mdFile()->None:
     inp=Path("./tests/inputs/example1.md")
-    output = Path("../TextHTMLPress/dist")
-    expectedOutputFile= Path("../TextHTMLPress/dist/example1.html")
+    output = Path("./dist")
+    expectedOutputFile= Path("./dist/example1.html")
     stylesheet = ""
     lang = "fr"
     g=Generator(inp,output,stylesheet,lang)
