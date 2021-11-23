@@ -30,5 +30,9 @@ def test_md():
     lang = "en-CA"
     g = Generator(inp, output, stylesheet, lang)
     html_md = g.generate_a_html(inp)
-    assert html_md == """<!DOCTYPE html><html lang="en-CA"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Silver Blaze</title></head><body><h1>Silver Blaze</h1><p>
+    assert (
+        html_md
+        == """<!DOCTYPE html><html lang="en-CA"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Silver Blaze</title></head><body><h1>Silver Blaze</h1><p>
 I am afraid, Watson, that I shall have to go</p></body></html>"""
+    )
+

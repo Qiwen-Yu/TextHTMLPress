@@ -14,7 +14,7 @@ from pathlib import Path
 def test_get_paragraphs() -> None:
     filepath = Path("./tests/inputs/test1.txt")
     para = get_paragraphs(filepath)
-    assert para == ['Silver Blaze', '\nI am afraid, Watson, that I shall have to go']
+    assert para == ["Silver Blaze", "\nI am afraid, Watson, that I shall have to go"]
 
 
 def test_title() -> None:
@@ -34,15 +34,19 @@ def test_md() -> None:
     lang = "en-CA"
     g = Generator(inp, output, stylesheet, lang)
     html_md = g.generate_a_html(inp)
-    assert html_md == """<!DOCTYPE html><html lang="en-CA"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Silver Blaze</title></head><body><h1>Silver Blaze</h1><p>
+    assert (
+        html_md
+        == """<!DOCTYPE html><html lang="en-CA"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Silver Blaze</title></head><body><h1>Silver Blaze</h1><p>
 I am afraid, Watson, that I shall have to go</p></body></html>"""
+    )
 
-def test_generate_a_HtmlFile_from_mdFile()->None:
-    inp=Path("./tests/inputs/example1.md")
+
+def test_generate_a_HtmlFile_from_mdFile() -> None:
+    inp = Path("./tests/inputs/example1.md")
     output = Path("./dist")
-    expectedOutputFile= Path("./dist/example1.html")
+    expectedOutputFile = Path("./dist/example1.html")
     stylesheet = ""
     lang = "fr"
-    g=Generator(inp,output,stylesheet,lang)
+    g = Generator(inp, output, stylesheet, lang)
     g.parse_markdown(inp)
     assert expectedOutputFile.exists()
