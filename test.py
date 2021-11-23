@@ -49,4 +49,5 @@ def test_generate_a_HtmlFile_from_mdFile() -> None:
     lang = "fr"
     g = Generator(inp, output, stylesheet, lang)
     g.parse_markdown(inp)
+    g.generator_wrapper()
     assert expectedOutputFile.exists()
