@@ -3,7 +3,7 @@ python -m entry point to run via python -m
 """
 import click
 from pathlib import Path
-from TextHTMLPress.generator import Generator
+from TextHTMLPress import Generator
 
 # fix issue 7
 import sys

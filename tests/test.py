@@ -1,6 +1,6 @@
 # import pytest
 # from click.testing import CliRunner
-from TextHTMLPress.generator import Generator, get_title
+from TextHTMLPress import Generator, get_title
 from pathlib import Path
 
 
