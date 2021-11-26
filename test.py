@@ -41,13 +41,13 @@ I am afraid, Watson, that I shall have to go</p></body></html>"""
     )
 
 
-def test_generate_a_HtmlFile_from_mdFile() -> None:
+def test_generate_html_from_md() -> None:
     inp = Path("./tests/inputs/example1.md")
     output = Path("./dist")
-    expectedOutputFile = Path("./dist/example1.html")
+    expected_output_file = Path("./dist/example1.html")
     stylesheet = ""
     lang = "fr"
     g = Generator(inp, output, stylesheet, lang)
     g.parse_markdown(inp)
     g.generator_wrapper()
-    assert expectedOutputFile.exists()
+    assert expected_output_file.exists()
