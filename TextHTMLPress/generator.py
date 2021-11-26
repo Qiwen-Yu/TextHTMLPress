@@ -190,7 +190,6 @@ class Generator:
     def generate_a_file(self, filepath: Path) -> None:
         """
         :param filepath: must be the path of a .txt file.
-        :return:
         """
         raw_html = self.generate_a_html(filepath)
         self.write_a_file(raw_html, filepath)
