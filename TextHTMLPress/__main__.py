@@ -86,5 +86,4 @@ def main(inp: Path, output: Path, stylesheet: str, lang: str) -> None:
         sys.exit(1)
 
 
-if __name__ == "__main__":
-    main()
+main()
