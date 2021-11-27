@@ -6,7 +6,6 @@ exclude = '''
   | \.idea
   | \.pytest_cache
   | dist
-  | public
 )/
 '''
 
